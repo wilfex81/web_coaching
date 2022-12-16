@@ -10,6 +10,8 @@ urlpatterns = [
     path('time/',views.time, name= 'time'),
     path('contact/',views.contact, name= 'contact'),
     path('login/',views.login, name= 'login'),
+    path('subscribe/', views.subscribe, name = 'subscribe'),
+    path("newsletter/", views.newsletter, name= 'newsletter')
 ]
 
 if settings.DEBUG:
