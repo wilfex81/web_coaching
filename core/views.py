@@ -1,11 +1,28 @@
 from django.shortcuts import render
+from . models import Home, About, Course, CourseDescription, SuccesStorie, SuccesDescription
 
 def home(request):
     """Retruns the contents of the mainpage"""
-    return render(request, 'index.html')
+    home = Home.objects.all()
+    about = About.objects.all()
+    courses = Course.objects.all()
+    description = CourseDescription.objects.all()
+    stories = SuccesStorie.objects.all()
+    break_description = SuccesDescription.objects.all()
+    context = {
+        'home': home,
+        'about':about,
+        'courses': courses,
+        'description': description,
+        'stories':stories,
+        'break_description':break_description
+    }
+    return render(request, 'index.html',context)
+
 
 def about(request):
     """Returns the contents of the about page"""
+   
     return render(request, 'about.html')
 
 def coaching(request):

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load embed_video_tags %}
 <html lang="en">
    <!-- Basic -->
    <meta charset="utf-8">
@@ -95,22 +96,25 @@
 
       </header>
       <!-- end header -->
-      
+
       <!-- section -->
       <section class="main_full banner_section_top">
         <div class="container-fluid">
           <div class="row">
              <div class="full">
+               {% for home in home %}
                   <div class="slider_banner">
-                    <img class="img-responsive" src="/static/images/slider_img.png" alt="#" />
+                    <img class="img-responsive" src="{{home.background_Image.url}}" alt="#" />
+                    <!-- src="/static/images/slider_img.png" -->
                       <div class="slide_cont">
                         <div class="slider_cont_inner">
-                          <h3>Welcome To Our  Web Coaching</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit</p>
-                        <a class="blue_bt" href="#">Read More</a>
-                        </div>
+                           <h3>{{home.title}}</h3>
+                         <p>{{home.description}}</p>
+                         <a class="blue_bt" href="{% url 'coaching' %}">Read More</a>
+                         </div>
                       </div>
                   </div>
+                  {% endfor %}
                 </div>
           </div>
         </div>
@@ -120,21 +124,35 @@
      <!-- about section -->
       <section class="layout_padding section about_dottat">
          <div class="container">
+            {% for about in about %}
             <div class="row">
                <div class="col-lg-12 text_align_center">
                   <div class="full heading_s1">
                      <h2>About</h2>
                   </div>
                   <div class="full">
-                     <p class="large">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                     <p class="large"> {{ about.description }}</p>
                   </div>
                </div>
+ 
+
                <div class="col-md-12">
                   <div class="about_img margin_top_30  text_align_center">
-                     <img src="/static/images/ab_img.png" alt="#" />
+                     <video width="900" controls>
+                        <source src="{% static '/images/videos/Video-20220719_172740-Meeting_Recording.mp4' type='video/mp4' %}">
+                        Your browser does not support the video tag.
+                        </video>
+                     <!-- <video width="900" controls>
+                  {% video about.video is_secure=True as about %}
+                  URL: {{ about.url }}
+                  Thumbnail: {{ about.thumbnail }}
+                  Backend: {{ about.video }}
+                  {% endvideo %}
+               </video> -->
                   </div>
                </div>
             </div>
+            {% endfor %}
          </div>
       </section>
       <!-- end about section -->
@@ -147,42 +165,30 @@
                   <div class="full heading_s1">
                      <h2>Our Courses</h2>
                   </div>
+                  {% for description in description %}
                   <div class="full">
-                     <p class="large">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                     <p class="large">{{ description.description}}</p>
                   </div>
+                  {% endfor %}
                </div>
             </div>
+            
             <div class="row">
-
-              <div class="col-md-4 text_align_center">
-                 <div class="cours">
-                   <img class="img-responsive" src="/static/images/cour1.png" alt="#" />
-                 </div>
-                 <h3>Design</h3>
-                 <p>adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in re</p>
-              </div>  
-
-              <div class="col-md-4 text_align_center">
-                 <div class="cours">
-                   <img class="img-responsive" src="/static/images/cour2.png" alt="#" />
-                 </div>
-                 <h3>Coding</h3>
-                 <p>adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in re</p>
-              </div> 
-
-              <div class="col-md-4 text_align_center">
-                 <div class="cours">
-                   <img class="img-responsive" src="/static/images/cour3.png" alt="#" />
-                 </div>
-                 <h3>Javascript</h3>
-                 <p>adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in re</p>
-              </div> 
-
-            </div>
+               {% for courses in courses %}
+               <div class="col-md-4 text_align_center">
+                  <div class="cours">
+                    <img class="img-responsive" src="{{courses.image.url}}" alt="#" />
+                  </div>
+                  <h3>{{ courses.title }}</h3>
+                  <p>{{ courses.course_description }}</p>
+               </div> 
+               {% endfor %}
+             </div>
+            
             <div class="row">
                <div class="col-md-12">
                   <div class="full center">
-                      <a class="blue_bt" href="#">Read More</a>
+                      <a class="blue_bt"href="{% url 'coaching' %}">Read More</a>
                   </div>
                </div>
             </div>
@@ -228,18 +234,23 @@
                      <h2>Our Success Stories</h2>
                   </div>
                   <div class="full">
-                     <p class="large">In ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo<br>consequat. Duis aute irure dolor in re</p>
+                     {% for break_description in break_description %}
+                     <p class="large">{{ break_description.description }}<br>{{ break_description.breakdescription }}</p>
+                     {% endfor %}
                   </div>
                </div>
                <div class="col-md-12 testimonial">
+                  
+                  {% for stories in stories %}
                   <div class="full text_align_center">
-                     <img src="/static/images/testimon.png" alt="#" />
-                     <h3><span class="theme_color_text">koluda</span><br><small>Student</small></h3>
+                     <img src="{{stories.image.url}}" alt="#" />
+                     <h3><span class="theme_color_text">{{ stories.name }}</span><br><small>{{ stories.tag }}</small></h3>
                   </div>
                   <div class="full margin_top_30 text_align_center">
                     <h4>I have successfully complated</h4>
-                    <p>adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud<br>exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in re</p>
+                    <p>{{ stories.course_completed_description }}</p>
                   </div>
+                  {% endfor %}
                </div>
             </div>
         </div>
@@ -276,7 +287,7 @@
             <div class="row">
 
                <div class="col-md-4 col-sm-12">
-                  <a href="{% url 'home' %}"><img class="img-responsive" src="/static/images/logo_footer.png" alt="#" /></a>
+                  <a href="{% url 'home' %}"><img class="img-responsive" src="/static/images/logo.png" alt="#" /></a>
                   <div class="footer_link_heading">
                      <div class="footer_menu margin_top_30">
                      <ul>
@@ -343,7 +354,7 @@
         <div class="container">
            <div class="row">
              <div class="col-md-12">
-               <p>Copyright 2019. All Rights Reserved.<a href="https://html.design/"> Free html Templates</a></p>
+               <p>Copyright 2019. All Rights Reserved.<a href="{% url 'home' %}"> code with flex</a></p>
              </div>
            </div>
         </div>

@@ -44,7 +44,8 @@ INSTALLED_APPS = [
 
 
 
-    'core'
+    'core',
+    'embed_video'
 ]
 
 MIDDLEWARE = [
