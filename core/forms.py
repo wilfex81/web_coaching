@@ -1,4 +1,6 @@
 from tinymce.widgets import TinyMCE
+from phonenumber_field.formfields import PhoneNumberField
+
 from django import forms
 
 class NewsLetterForm(forms.Form):
@@ -9,4 +11,7 @@ class NewsLetterForm(forms.Form):
     subject = forms.CharField()
     receivers = forms.CharField()
     message = forms.CharField(widget=TinyMCE(), label="Email content")
+
+class ClientForm(forms.Form):
+    phone = PhoneNumberField()
 

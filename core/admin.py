@@ -1,5 +1,9 @@
 from django.contrib import admin
-from .models import About, Course, SuccesStorie, Home, CourseDescription, SuccesDescription, SubscribedUser
+from .models import About, Course, SuccesStorie, Home, CourseDescription, SuccesDescription, SubscribedUser, ContactsSaved
+
+#Table to display messages sent by users
+class ClientsMessagesAdmin(admin.ModelAdmin):
+    list_display = ('email', 'name', 'phone', 'message', 'created_date')
 
 #The table displays all the users subscribed to our email
 class SubscribedUsersAdmin(admin.ModelAdmin):
@@ -12,5 +16,6 @@ admin.site.register(SuccesStorie)
 admin.site.register(CourseDescription)
 admin.site.register(SuccesDescription)
 admin.site.register(SubscribedUser, SubscribedUsersAdmin)
+admin.site.register(ContactsSaved, ClientsMessagesAdmin )
 
 

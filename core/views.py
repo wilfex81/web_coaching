@@ -5,9 +5,9 @@ from django.core.exceptions import ValidationError
 from django.contrib import messages
 from django.core.mail import EmailMessage
 
-from . models import Home, About, Course, CourseDescription, SuccesStorie, SuccesDescription, SubscribedUser
+from . models import Home, About, Course, CourseDescription, SuccesStorie, SuccesDescription, SubscribedUser, ContactsSaved
 
-from .forms import NewsLetterForm
+from .forms import NewsLetterForm, ClientForm
 
 def home(request):
     """Returns the contents of the mainpage"""
@@ -30,12 +30,19 @@ def home(request):
 
 def about(request):
     """Returns the contents of the about page"""
-   
-    return render(request, 'about.html')
+    about = About.objects.all()
+    context = {
+        'about':about,
+    }
+    return render(request, 'about.html',context)
 
 def coaching(request):
     ''''Returns the contents of the coaching page'''
-    return render(request, 'coaching.html')
+    courses = Course.objects.all()
+    context = {
+        'courses': courses,
+    }
+    return render(request, 'coaching.html',context)
 
 def time(request):
     '''Returns the contents of the time page
@@ -49,6 +56,36 @@ def contact(request):
 def login(request):
     '''Login page'''
     return render(request, 'login.html')
+
+def contactUs(request):
+    '''With this meethod, the user will be able to contact the admin
+    by seding an email.'''
+    if request.method == 'POST':
+        name = request.POST.get('name', None)
+        email = request.POST.get('email', None)
+        phone = request.POST.get('phone', None)
+        message = request.POST.get('message', None)
+
+        #check if name and email are valid and the fields are not empty
+        if not name or not email:
+            messages.error(request, "Please enter a valid name and email!!")
+            return redirect("/contact")
+        #validate email
+        try:
+            validate_email(email)
+        except ValidationError as e:
+            messages.error(request, e.messages[0])
+            return redirect("/contact")
+        
+        contact_model_instance = ContactsSaved()
+        contact_model_instance.name = name
+        contact_model_instance.email = email
+        contact_model_instance.phone = phone
+        contact_model_instance.message = message
+        contact_model_instance.save()
+        print(contact_model_instance)
+        messages.success(request, f'Hello {name} Message sent successfuly')
+        return redirect(request.META.get("HTTP_REFERE", "/home"))
 
 def subscribe(request):
     '''

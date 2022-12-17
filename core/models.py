@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from phonenumber_field.modelfields import PhoneNumberField
 from django.core.validators import FileExtensionValidator
 from  embed_video.fields  import  EmbedVideoField
 class Home(models.Model):
@@ -54,5 +55,16 @@ class SubscribedUser(models.Model):
 
     def __str__(self):
         return self.email
+
+class ContactsSaved(models.Model):
+    name = models.CharField(max_length=150)
+    email = models.EmailField(unique= False, max_length=150)
+    phone = PhoneNumberField(null=False, blank=False, unique=False)
+    message = models.CharField(max_length=500)
+    created_date = models.EmailField('Date created', default=timezone.now)
+
+    def __str__(self):
+        return self.name
+
 
 

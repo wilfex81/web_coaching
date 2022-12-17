@@ -43,11 +43,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
 
-
+    # Other apps…
     'core',
     'embed_video',
     'tinymce',
     'crispy_forms',
+    "phonenumber_field",
 ]
 
 MIDDLEWARE = [

@@ -11,7 +11,8 @@ urlpatterns = [
     path('contact/',views.contact, name= 'contact'),
     path('login/',views.login, name= 'login'),
     path('subscribe/', views.subscribe, name = 'subscribe'),
-    path("newsletter/", views.newsletter, name= 'newsletter')
+    path("newsletter/", views.newsletter, name= 'newsletter'),
+    path("contact_us/", views.contactUs, name='contact_us')
 ]
 
 if settings.DEBUG:
