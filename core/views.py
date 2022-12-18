@@ -65,7 +65,6 @@ def contactUs(request):
         email = request.POST.get('email', None)
         phone = request.POST.get('phone', None)
         message = request.POST.get('message', None)
-
         #check if name and email are valid and the fields are not empty
         if not name or not email:
             messages.error(request, "Please enter a valid name and email!!")
@@ -77,13 +76,8 @@ def contactUs(request):
             messages.error(request, e.messages[0])
             return redirect("/contact")
         
-        contact_model_instance = ContactsSaved()
-        contact_model_instance.name = name
-        contact_model_instance.email = email
-        contact_model_instance.phone = phone
-        contact_model_instance.message = message
-        contact_model_instance.save()
-        print(contact_model_instance)
+        user = ContactsSaved.objects.create(name = name, email = email, phone = phone, message = message)
+        user.save()
         messages.success(request, f'Hello {name} Message sent successfuly')
         return redirect(request.META.get("HTTP_REFERE", "/home"))
 

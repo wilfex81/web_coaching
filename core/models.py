@@ -60,7 +60,7 @@ class ContactsSaved(models.Model):
     name = models.CharField(max_length=150)
     email = models.EmailField(unique= False, max_length=150)
     phone = PhoneNumberField(null=False, blank=False, unique=False)
-    message = models.CharField(max_length=500)
+    message = models.TextField(max_length=500, null=False)
     created_date = models.EmailField('Date created', default=timezone.now)
 
     def __str__(self):

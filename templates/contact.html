@@ -31,6 +31,7 @@
    <link href="{% static 'css/colors.css' %}" rel="stylesheet">
    <!-- light box gallery -->
    <link href="{% static 'css/ekko-lightbox.css' %}" rel="stylesheet">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    <!--[if lt IE 9]>
    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -119,7 +120,6 @@
                            <div class="form_cont">
                               <form action="{% url 'contact_us' %}" method="post">
                                  {% csrf_token %} 
-
                                   <fieldset>
                                      <div class="field">
                                         <input type="text" name="name" placeholder="Name">
@@ -131,7 +131,7 @@
                                         <input type="text" name="phone" placeholder="Phone">
                                      </div>
                                      <div class="field">
-                                        <textarea placeholder="Message"></textarea>
+                                        <textarea placeholder="Message" name="content"></textarea>
                                      </div>
                                      <div class="field center">
                                        <button>Send</button>
@@ -248,6 +248,20 @@
   </div>
 </div>
 <!-- end footer -->
+<script>
+   $("textarea[name='content']").on("change", function() {
+     $.ajax({
+       url: "{% url 'contact_us' %}",
+       method: 'POST',
+       data: {
+         content: $(this).val(),
+         csrfmiddlewaretoken: '{{ csrf_token }}'
+       }
+     }).done(function(msg) {
+       alert("Data saved");
+     })
+   });
+ </script>
       <!-- Core JavaScript
          ================================================== -->
       <script src="{% static 'js/jquery.min.js' %}"></script>
