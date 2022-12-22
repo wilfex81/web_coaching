@@ -60,6 +60,35 @@ class HappyStudents(models.Model):
     def __str__(self):
         return self.happy_student
 
+class Feature(models.Model):
+    title = models.CharField(max_length=200, blank=False)
+    description = models.CharField(max_length=500, blank=False)
+    image = models.ImageField(upload_to="features_images")
+
+    def __str__(self):
+        return self.title
+
+class Instructor(models.Model):
+    heading = models.CharField(max_length=150, blank=False)
+    description = models.CharField(max_length=200, blank=False)
+
+    def __str__(self):
+        return self.heading
+
+class Certficate(models.Model):
+    heading = models.CharField(max_length=150, blank=False)
+    description = models.CharField(max_length=200,blank=False)
+
+    def __str__(self):
+        return self.heading
+
+class OnlineClasse(models.Model):
+    heading = models.CharField(max_length=150, blank=False)
+    description = models.CharField(max_length=200, blank=False)
+
+    def __str__(self):
+        return self.heading
+
 class SubscribedUser(models.Model):
     name = models.CharField(max_length=150)
     email = models.EmailField(unique=True, max_length=200)

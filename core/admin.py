@@ -1,5 +1,11 @@
 from django.contrib import admin
-from .models import Testimonie, SubscribedUser, TestimonieIntro, About, AvailableCourse, AvailableInstructor, AvailableSubject, HappyStudents
+from .models import (Testimonie, SubscribedUser,
+                    TestimonieIntro, About, 
+                    AvailableCourse, AvailableInstructor, 
+                    AvailableSubject, HappyStudents,
+                    Feature, Instructor, Certficate, 
+                    OnlineClasse
+                    )
 #Table to display messages sent by users
 class ClientsMessagesAdmin(admin.ModelAdmin):
     list_display = ('email', 'name', 'phone', 'message', 'created_date')
@@ -19,6 +25,11 @@ admin.site.register(AvailableInstructor)
 admin.site.register(AvailableCourse)
 admin.site.register(HappyStudents)
 admin.site.register(SubscribedUser, SubscribedUsersAdmin)
+admin.site.register(Feature)
+admin.site.register(Instructor)
+admin.site.register(Certficate)
+admin.site.register(OnlineClasse)
+
 # admin.site.register(ContactsSaved, ClientsMessagesAdmin )
 
 

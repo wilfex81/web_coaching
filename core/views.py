@@ -5,7 +5,13 @@ from django.core.exceptions import ValidationError
 from django.contrib import messages
 from django.core.mail import EmailMessage
 
-from . models import Testimonie, SubscribedUser, TestimonieIntro, About,  AvailableCourse, AvailableInstructor, AvailableSubject, HappyStudents
+from .models import (Testimonie, SubscribedUser,
+                    TestimonieIntro, About, 
+                    AvailableCourse, AvailableInstructor, 
+                    AvailableSubject, HappyStudents,
+                    Feature, Instructor, Certficate, 
+                    OnlineClasse
+                    )
 
 from .forms import NewsLetterForm, ClientForm
 
@@ -16,12 +22,24 @@ def home(request):
     available_course = AvailableCourse.objects.all()
     available_instructor = AvailableInstructor.objects.all()
     happy_students = HappyStudents.objects.all()
+    feature = Feature.objects.all()
+    instructor = Instructor.objects.all()
+    certificate  = Certficate.objects.all()
+    classes = OnlineClasse.objects.all()
+    testimonies = Testimonie.objects.all()
+    testimonial_intro = TestimonieIntro.objects.all()
     context = {
         'about':about,
         'available_subject':available_subject,
         'available_course': available_course,
         'available_instructor':available_instructor,
-        'happy_students': happy_students
+        'happy_students': happy_students,
+        'feature':feature,
+        'instructor': instructor,
+        'certificate': certificate,
+        'classes': classes,
+        'testimonies': testimonies,
+        'testimonial_intro': testimonial_intro
     }
     return render(request, 'index.html', context)
 
@@ -40,6 +58,7 @@ def about(request):
         'available_instructor':available_instructor,
         'happy_students': happy_students
     }
+
     return render(request, 'about.html', context)
 
 def courses(request):
@@ -57,8 +76,18 @@ def contact(request):
     return render(request, 'contact.html')
 
 def features(request):
-    '''Login page'''
-    return render(request, 'feature.html')
+    '''features page'''
+    feature = Feature.objects.all()
+    instructor = Instructor.objects.all()
+    certificate  = Certficate.objects.all()
+    classes = OnlineClasse.objects.all()
+    context = {
+        'feature':feature,
+        'instructor': instructor,
+        'certificate': certificate,
+        'classes': classes
+    }
+    return render(request, 'feature.html', context)
 
 def team(request):
     '''Login page'''

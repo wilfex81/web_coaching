@@ -185,45 +185,55 @@
     <!-- Feature Start -->
     <div class="container-fluid bg-image" style="margin: 90px 0;">
         <div class="container">
-            <div class="row">
+            <div class="row">  
                 <div class="col-lg-7 my-5 pt-5 pb-lg-5">
+                    {% for feature in feature %}  
                     <div class="section-title position-relative mb-4">
                         <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Why Choose Us?</h6>
-                        <h1 class="display-4">Why You Should Start Learning with Us?</h1>
+                        <h1 class="display-4">{{ feature.title}}</h1>
                     </div>
-                    <p class="mb-4 pb-2">Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo dolores et sit ipsum rebum, sadipscing et erat eirmod diam kasd labore clita est. Diam sanctus gubergren sit rebum clita amet.</p>
+                    <p class="mb-4 pb-2">{{ feature.description }}</p>
+                    {% endfor %}
                     <div class="d-flex mb-3">
                         <div class="btn-icon bg-primary mr-4">
                             <i class="fa fa-2x fa-graduation-cap text-white"></i>
                         </div>
+                        {% for instructor in instructor %}  
                         <div class="mt-n1">
-                            <h4>Skilled Instructors</h4>
-                            <p>Labore rebum duo est Sit dolore eos sit tempor eos stet, vero vero clita magna kasd no nonumy et eos dolor magna ipsum.</p>
+                            <h4>{{ instructor.heading }}</h4>
+                            <p>{{ instructor.description }}</p>
                         </div>
+                        {% endfor %}
                     </div>
                     <div class="d-flex mb-3">
                         <div class="btn-icon bg-secondary mr-4">
                             <i class="fa fa-2x fa-certificate text-white"></i>
                         </div>
+                        {% for certificate in certificate %} 
                         <div class="mt-n1">
-                            <h4>International Certificate</h4>
-                            <p>Labore rebum duo est Sit dolore eos sit tempor eos stet, vero vero clita magna kasd no nonumy et eos dolor magna ipsum.</p>
+                            <h4>{{ certificate.heading }}</h4>
+                            <p>{{ certificate.description }}</p>
                         </div>
+                        {% endfor %}
                     </div>
                     <div class="d-flex">
                         <div class="btn-icon bg-warning mr-4">
                             <i class="fa fa-2x fa-book-reader text-white"></i>
                         </div>
+                        {% for classes in classes %}
                         <div class="mt-n1">
-                            <h4>Online Classes</h4>
-                            <p class="m-0">Labore rebum duo est Sit dolore eos sit tempor eos stet, vero vero clita magna kasd no nonumy et eos dolor magna ipsum.</p>
+                            <h4>{{ classes.heading }}</h4>
+                            <p class="m-0">{{ classes.description }}</p>
                         </div>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="col-lg-5" style="min-height: 500px;">
+                    {% for feature in feature %}
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100" src="{% static '/img/feature.jpg' %}" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100" src="{{ feature.image.url }}" style="object-fit: cover;">
                     </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -444,47 +454,39 @@
 
 
     <!-- Testimonial Start -->
-    <div class="container-fluid bg-image py-5" style="margin: 90px 0;">
+    <div class="container-fluid py-5">
         <div class="container py-5">
             <div class="row align-items-center">
                 <div class="col-lg-5 mb-5 mb-lg-0">
+                    {% for testimonial_intro in testimonial_intro %}             
                     <div class="section-title position-relative mb-4">
                         <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Testimonial</h6>
-                        <h1 class="display-4">What Say Our Students</h1>
+                        <h1 class="display-4">{{ testimonial_intro.title }}</h1>
                     </div>
-                    <p class="m-0">Dolor est dolores et nonumy sit labore dolores est sed rebum amet, justo duo ipsum sanctus dolore magna rebum sit et. Diam lorem ea sea at. Nonumy et at at sed justo est nonumy tempor. Vero sea ea eirmod, elitr ea amet diam ipsum at amet. Erat sed stet eos ipsum diam</p>
+                    <p class="m-0">{{ testimonial_intro.paragraph }}</p>
+                    {% endfor %}
                 </div>
                 <div class="col-lg-7">
                     <div class="owl-carousel testimonial-carousel">
-                        <div class="bg-white p-5">
+                        {% for testimonies in testimonies %}
+                        <div class="bg-light p-5">
                             <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
-                            <p>Sed et elitr ipsum labore dolor diam, ipsum duo vero sed sit est est ipsum eos clita est ipsum. Est nonumy tempor at kasd. Sed at dolor duo ut dolor, et justo erat dolor magna sed stet amet elitr duo lorem</p>
+                            <p> {{ testimonies.student_testimony }}</p>
                             <div class="d-flex flex-shrink-0 align-items-center mt-4">
-                                <img class="img-fluid mr-4" src="{% static '/img/testimonial-2.jpg' %}" alt="">
+                                <img class="img-fluid mr-4" src="{{testimonies.image.url}}" alt="">
                                 <div>
-                                    <h5>Student Name</h5>
-                                    <span>Web Design</span>
+                                    <h5>{{testimonies.student_name}}</h5>
+                                    <span>{{testimonies.student_course}}</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-white p-5">
-                            <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
-                            <p>Sed et elitr ipsum labore dolor diam, ipsum duo vero sed sit est est ipsum eos clita est ipsum. Est nonumy tempor at kasd. Sed at dolor duo ut dolor, et justo erat dolor magna sed stet amet elitr duo lorem</p>
-                            <div class="d-flex flex-shrink-0 align-items-center mt-4">
-                                <img class="img-fluid mr-4" src="{% static '/img/testimonial-1.jpg' %}" alt="">
-                                <div>
-                                    <h5>Student Name</h5>
-                                    <span>Web Design</span>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
-                </div>
+                </div>    
             </div>
         </div>
     </div>
-    <!-- Testimonial Start -->
-
+    <!-- Testimonial end -->
 
     <!-- Contact Start -->
     <div class="container-fluid py-5">
