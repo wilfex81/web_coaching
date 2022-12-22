@@ -6,13 +6,15 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('home/',views.home, name= 'home'),
     path('about/',views.about, name= 'about'),
-    path('coaching/',views.coaching, name= 'coaching'),
-    path('time/',views.time, name= 'time'),
+    path('courses/',views.courses, name= 'courses'),
+    path('detail/',views.detail, name= 'detail'),
+    path('features/',views.features, name= 'features'),
+    path('team/',views.team, name= 'team'),
+    path('testimonial/',views.testimonial, name= 'testimonial'),
     path('contact/',views.contact, name= 'contact'),
     path('login/',views.login, name= 'login'),
     path('subscribe/', views.subscribe, name = 'subscribe'),
-    path("newsletter/", views.newsletter, name= 'newsletter'),
-    path("contact_us/", views.contactUs, name='contact_us')
+    path("newsletter/", views.newsletter, name= 'newsletter')
 ]
 
 if settings.DEBUG:

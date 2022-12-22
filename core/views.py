@@ -5,81 +5,102 @@ from django.core.exceptions import ValidationError
 from django.contrib import messages
 from django.core.mail import EmailMessage
 
-from . models import Home, About, Course, CourseDescription, SuccesStorie, SuccesDescription, SubscribedUser, ContactsSaved
+from . models import Testimonie, SubscribedUser, TestimonieIntro, About,  AvailableCourse, AvailableInstructor, AvailableSubject, HappyStudents
 
 from .forms import NewsLetterForm, ClientForm
 
 def home(request):
     """Returns the contents of the mainpage"""
-    home = Home.objects.all()
     about = About.objects.all()
-    courses = Course.objects.all()
-    description = CourseDescription.objects.all()
-    stories = SuccesStorie.objects.all()
-    break_description = SuccesDescription.objects.all()
+    available_subject = AvailableSubject.objects.all()
+    available_course = AvailableCourse.objects.all()
+    available_instructor = AvailableInstructor.objects.all()
+    happy_students = HappyStudents.objects.all()
     context = {
-        'home': home,
         'about':about,
-        'courses': courses,
-        'description': description,
-        'stories':stories,
-        'break_description':break_description
+        'available_subject':available_subject,
+        'available_course': available_course,
+        'available_instructor':available_instructor,
+        'happy_students': happy_students
     }
-    return render(request, 'index.html',context)
+    return render(request, 'index.html', context)
 
 
 def about(request):
     """Returns the contents of the about page"""
     about = About.objects.all()
+    available_subject = AvailableSubject.objects.all()
+    available_course = AvailableCourse.objects.all()
+    available_instructor = AvailableInstructor.objects.all()
+    happy_students = HappyStudents.objects.all()
     context = {
         'about':about,
+        'available_subject':available_subject,
+        'available_course': available_course,
+        'available_instructor':available_instructor,
+        'happy_students': happy_students
     }
-    return render(request, 'about.html',context)
+    return render(request, 'about.html', context)
 
-def coaching(request):
+def courses(request):
     ''''Returns the contents of the coaching page'''
-    courses = Course.objects.all()
-    context = {
-        'courses': courses,
-    }
-    return render(request, 'coaching.html',context)
 
-def time(request):
+    return render(request, 'course.html')
+
+def detail(request):
     '''Returns the contents of the time page
     Time page in this case is the time the lessons take place'''
-    return render(request, 'time.html')
+    return render(request, 'detail.html')
 
 def contact(request):
     '''In this page we can contact the admin'''
     return render(request, 'contact.html')
 
+def features(request):
+    '''Login page'''
+    return render(request, 'feature.html')
+
+def team(request):
+    '''Login page'''
+    return render(request, 'team.html')
+
+def testimonial(request):
+    testimonies = Testimonie.objects.all()
+    testimonial_intro = TestimonieIntro.objects.all()
+    context = {
+        'testimonies': testimonies,
+        'testimonial_intro': testimonial_intro
+    }
+    '''Login page'''
+    return render(request, 'testimonial.html', context)
+
 def login(request):
     '''Login page'''
-    return render(request, 'login.html')
+    return render(request, 'testimonial.html')
 
-def contactUs(request):
-    '''With this meethod, the user will be able to contact the admin
-    by seding an email.'''
-    if request.method == 'POST':
-        name = request.POST.get('name', None)
-        email = request.POST.get('email', None)
-        phone = request.POST.get('phone', None)
-        message = request.POST.get('message', None)
-        #check if name and email are valid and the fields are not empty
-        if not name or not email:
-            messages.error(request, "Please enter a valid name and email!!")
-            return redirect("/contact")
-        #validate email
-        try:
-            validate_email(email)
-        except ValidationError as e:
-            messages.error(request, e.messages[0])
-            return redirect("/contact")
+# def contactUs(request):
+#     '''With this meethod, the user will be able to contact the admin
+#     by seding an email.'''
+#     if request.method == 'POST':
+#         name = request.POST.get('name', None)
+#         email = request.POST.get('email', None)
+#         phone = request.POST.get('phone', None)
+#         message = request.POST.get('message', None)
+#         #check if name and email are valid and the fields are not empty
+#         if not name or not email:
+#             messages.error(request, "Please enter a valid name and email!!")
+#             return redirect("/contact")
+#         #validate email
+#         try:
+#             validate_email(email)
+#         except ValidationError as e:
+#             messages.error(request, e.messages[0])
+#             return redirect("/contact")
         
-        user = ContactsSaved.objects.create(name = name, email = email, phone = phone, message = message)
-        user.save()
-        messages.success(request, f'Hello {name} Message sent successfuly')
-        return redirect(request.META.get("HTTP_REFERE", "/home"))
+#         user = ContactsSaved.objects.create(name = name, email = email, phone = phone, message = message)
+#         user.save()
+#         messages.success(request, f'Hello {name} Message sent successfuly')
+#         return redirect(request.META.get("HTTP_REFERE", "/home"))
 
 def subscribe(request):
     '''

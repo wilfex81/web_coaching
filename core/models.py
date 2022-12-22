@@ -3,50 +3,62 @@ from django.utils import timezone
 from phonenumber_field.modelfields import PhoneNumberField
 from django.core.validators import FileExtensionValidator
 from  embed_video.fields  import  EmbedVideoField
-class Home(models.Model):
-    title = models.CharField(max_length= 150, blank= False)
-    description = models.CharField(max_length=250)
-    background_Image = models.ImageField(upload_to='background_images')
+
+class TestimonieIntro(models.Model):
+    title = models.CharField(max_length=150, blank=False)
+    paragraph = models.CharField(max_length=300, blank=False)
 
     def __str__(self):
         return self.title
+
+class Testimonie(models.Model):
+    student_name = models.CharField(max_length=100, blank=False)
+    student_testimony = models.CharField(max_length=300, blank=False)
+    student_course = models.CharField(max_length=150, blank=False)
+    image = models.ImageField(upload_to="testimonies_images")
+
+    def __str__(self):
+        return self.student_name
 
 class About(models.Model):
-    description = models.CharField(max_length= 250, blank= False)
-    video =models.FileField(upload_to='videos')
-    date_uploaded = models.DateTimeField()
-
-    def __str__(self):
-        return self.description
-class CourseDescription(models.Model):
-    description = models.CharField(max_length=250, blank= True)
-    def __str__(self):
-        return self.description
-
-class Course(models.Model):
-    title = models.CharField(max_length=150, blank= False)
- 
-    image = models.ImageField(upload_to= "course_images")
-    course_description = models.CharField(max_length=250, blank=False)
+    title = models.CharField(max_length=150, blank=False)
+    description = models.CharField(max_length=200, blank=False)
+    image = models.ImageField(upload_to="About_images")
 
     def __str__(self):
         return self.title
 
-class SuccesStorie(models.Model):
-    name = models.CharField(max_length=30, blank=False)
-    image = models.ImageField(upload_to= "success_stories_images")
-    tag = models.CharField(max_length=40, blank=True)
-    course_completed_description = models.CharField(max_length=250, blank=True)
+class AvailableSubject(models.Model):
+    available_subject = models.CharField(max_length=100)
+    available_subject_span = models.CharField(max_length=100)
+    subject_number = models.IntegerField()
+    
+    def __str__(self):
+        return self.available_subject
+    
+class AvailableCourse(models.Model):
+    available_course = models.CharField(max_length=200, blank=False)
+    available_course_span = models.CharField(max_length=100)
+    course_number = models.IntegerField()
 
     def __str__(self):
-        return self.name
+        return self.available_course
 
-class SuccesDescription(models.Model):
-    description = models.CharField(max_length=250, blank=False)
-    breakdescription = models.CharField(max_length=250, blank=False)
+class AvailableInstructor(models.Model):
+    available_skilled_instructor = models.CharField(max_length=150, blank=False)
+    available_skilled_instructor_span = models.CharField(max_length=150, blank=False)
+    skilled_instructors_number = models.IntegerField()
 
     def __str__(self):
-        return self.description
+        return self.available_skilled_instructor
+
+class HappyStudents(models.Model):
+    happy_student = models.CharField(max_length=200)
+    happy_student_span = models.CharField(max_length=200)
+    number_of_happy_student = models.IntegerField()
+
+    def __str__(self):
+        return self.happy_student
 
 class SubscribedUser(models.Model):
     name = models.CharField(max_length=150)
@@ -56,15 +68,6 @@ class SubscribedUser(models.Model):
     def __str__(self):
         return self.email
 
-class ContactsSaved(models.Model):
-    name = models.CharField(max_length=150)
-    email = models.EmailField(unique= False, max_length=150)
-    phone = PhoneNumberField(null=False, blank=False, unique=False)
-    message = models.TextField(max_length=500, null=False)
-    created_date = models.EmailField('Date created', default=timezone.now)
-
-    def __str__(self):
-        return self.name
 
 
 

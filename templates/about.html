@@ -1,257 +1,326 @@
 <!DOCTYPE html>
 {% load static %}
-{% load embed_video_tags %}
 <html lang="en">
-   <!-- Basic -->
-   <meta charset="utf-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <!-- Mobile Metas -->
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <!-- Site Metas -->
-   <title>
-   {% block title %}
-      About
-   {% endblock title %}
-      </title>
-   <meta name="keywords" content="">
-   <meta name="description" content="">
-   <meta name="author" content="">
-   <!-- site icon -->
-   <link rel="icon" href="/static/images/fevicon.png" type="image/png" />
-   <!-- Bootstrap core CSS -->
-   <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
-   <!-- FontAwesome Icons core CSS -->
-   <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
-   <!-- Custom animate styles for this template -->
-   <link href="{% static 'css/animate.css' %}" rel="stylesheet">
-   <!-- Custom styles for this template -->
-   <link href="{% static 'style.css' %}" rel="stylesheet">
-   <!-- Responsive styles for this template -->
-   <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
-   <!-- Colors for this template -->
-   <link href="{% static 'css/colors.css' %}" rel="stylesheet">
-   <!-- light box gallery -->
-   <link href="{% static 'css/ekko-lightbox.css' %}" rel="stylesheet">
-   <!--[if lt IE 9]>
-   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-   <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-   <![endif]-->
-   </head>
-   <body id="inner_page">
-      <!-- header -->
-      <header class="header">
 
-        <div class="header_top_section">
-           <div class="container">
-              <div class="row">
-               <div class="col-lg-3">
-                  <div class="full">
-                     <div class="logo">
-                        <a href="{% url 'home' %}"><img src="/static/images/logo.png" alt="#" /></a>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-lg-9 site_information">
-                  <div class="full">
-                     <div class="main_menu">
-                        <nav class="navbar navbar-inverse navbar-toggleable-md">
-                           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#cloapediamenu" aria-controls="cloapediamenu" aria-expanded="false" aria-label="Toggle navigation">
-                           <span class="float-left">Menu</span>
-                           <span class="float-right"><i class="fa fa-bars"></i> <i class="fa fa-close"></i></span>
-                           </button>
-                           <div class="collapse navbar-collapse justify-content-md-center" id="cloapediamenu">
-                              <ul class="navbar-nav">
-                                 <li class="nav-item active">
-                                    <a class="nav-link" href="{% url 'home' %}">Home</a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a class="nav-link color-aqua-hover" href="{% url 'about' %}">About</a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a class="nav-link color-aqua-hover" href="{% url 'coaching' %}">Coaching</a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a class="nav-link color-grey-hover" href="{% url 'time' %}">Time</a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a class="nav-link color-grey-hover" href="{% url 'contact' %}">Contact Us</a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a class="nav-link color-grey-hover" href="{% url 'login' %}">Login</a>
-                                 </li>
-                              </ul>
-                              <ul class="navbar-nav">
-                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><img src="/static/images/search_icon.png" alt="#" /></a>
-                                 </li>
-                              </ul>
-                           </div>
-                        </nav>
-                     </div>
-                  </div>
-               </div>
+<head>
+    <meta charset="utf-8">
+    <title>CodeWithFlex - Online Education</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <!-- <div class="container-fluid bg-dark">
+        <div class="row py-2 px-lg-5">
+            <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
+                <div class="d-inline-flex align-items-center text-white">
+                    <small><i class="fa fa-phone-alt mr-2"></i>+012 345 6789</small>
+                    <small class="px-3">|</small>
+                    <small><i class="fa fa-envelope mr-2"></i>info@example.com</small>
+                </div>
             </div>
-           </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-white px-2" href="">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="text-white px-2" href="">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a class="text-white px-2" href="">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a class="text-white px-2" href="">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a class="text-white pl-2" href="">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
         </div>
+    </div> -->
+    <!-- Topbar End -->
 
-      </header>
-      <!-- end header -->
-      
-      <!-- section -->
-      <section class="main_full inner_page">
-        <div class="container-fluid">
-          <div class="row">
-             <div class="full">
-               <h3>About us</h3>    
-             </div>
-          </div>
+
+     <!-- Navbar Start -->
+     <div class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
+            <a href="{% url 'home' %}" class="navbar-brand ml-lg-3">
+                <h1 class="m-0 text-uppercase text-primary"><i class="fa fa-book-reader mr-3"></i>CodeWithFlex</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
+                <div class="navbar-nav mx-auto py-0">
+                    <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
+                    <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
+                    <a href="{% url 'courses' %}" class="nav-item nav-link">Courses</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="{% url 'detail' %}" class="dropdown-item">Course Detail</a>
+                            <a href="{% url 'features' %}" class="dropdown-item">Our Features</a>
+                            <a href="{% url 'team' %}" class="dropdown-item">Instructors</a>
+                            <a href="{% url 'testimonial' %}" class="dropdown-item">Testimonial</a>
+                        </div>
+                    </div>
+                    <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
+                </div>
+                <a href="" class="btn btn-primary py-2 px-4 d-none d-lg-block">Join Us</a>
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+
+    <!-- Header Start -->
+    <div class="jumbotron jumbotron-fluid page-header position-relative overlay-bottom" style="margin-bottom: 90px;">
+        <div class="container text-center py-5">
+            <h1 class="text-white display-1">About</h1>
+            <div class="d-inline-flex text-white mb-5">
+                <p class="m-0 text-uppercase"><a class="text-white" href="{% url 'home' %}">Home</a></p>
+                <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                <p class="m-0 text-uppercase">About</p>
+            </div>
+            <div class="mx-auto mb-5" style="width: 100%; max-width: 600px;">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-light bg-white text-body px-4 dropdown-toggle" type="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Courses</button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Courses 1</a>
+                            <a class="dropdown-item" href="#">Courses 2</a>
+                            <a class="dropdown-item" href="#">Courses 3</a>
+                        </div>
+                    </div>
+                    <input type="text" class="form-control border-light" style="padding: 30px 25px;" placeholder="Keyword">
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary px-4 px-lg-5">Search</button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </section>
-      <!-- end section -->
-    <!-- about section -->
-    <section class="layout_padding section about_dottat">
-      <div class="container">
-         {% for about in about %}
-         <div class="row">
-            <div class="col-lg-12 text_align_center">
-               <div class="full heading_s1">
-                  <h2>About</h2>
-               </div>
-               <div class="full">
-                  <p class="large"> {{ about.description }}</p>
-               </div>
-            </div>
+    </div>
+    <!-- Header End -->
 
 
-            <div class="col-md-12">
-               <div class="about_img margin_top_30  text_align_center">
-                  <video width="900" controls>
-                     <source src="{% static '/images/videos/Video-20220719_172740-Meeting_Recording.mp4' type='video/mp4' %}">
-                     Your browser does not support the video tag.
-                     </video>
-                  <!-- <video width="900" controls>
-               {% video about.video is_secure=True as about %}
-               URL: {{ about.url }}
-               Thumbnail: {{ about.thumbnail }}
-               Backend: {{ about.video }}
-               {% endvideo %}
-            </video> -->
-               </div>
-            </div>
-         </div>
-         {% endfor %}
-      </div>
-   </section>
-   <!-- end about section --> 
-      <!-- section -->
-      <section class="section blue_pattern_bg" style="background-color: #3b3bff;">
-         <div class="container">
+    <!-- About Start -->
+    <div class="container-fluid py-5">
+        
+        <div class="container py-5">
+            
             <div class="row">
-               <div class="col-md-6">
-                  <div class="full">
-                     <h4>Subscribe Now to Our Newsletter !</h4>
-                  </div>
-               </div>
-               <div class="col-md-6">
-                 <div class="form_subribe">
-                    <form>
-                       <input type="email" name="email" placeholder="Enter Your Email" />
-                       <button>Subscribe</button>
-                    </form>
-                 </div>
-               </div>
-            </div>
-         </div>
-      </section>
-      <!-- end section -->
-     
-   <!-- footer -->
-   <footer class="footer layout_padding">
-      <div class="container">
-         <div class="row">
-
-            <div class="col-md-4 col-sm-12">
-               <a href="{% url 'home' %}"><img class="img-responsive" src="/static/images/logo.png" alt="#" /></a>
-               <div class="footer_link_heading">
-                  <div class="footer_menu margin_top_30">
-                  <ul>
-                     <li><a href="tel:9876543210">9876 543 210</a></li>
-                     <li><a href="#">demo@gmail.com</a></li>
-                     <li><a href="#">40 Baria Sreet 133/2 NewYork City, US</a></li>
-                  </ul>
-               </div>
-               </div>
-            </div>
-            
-            <div class="col-md-8">
-              <div class="row">
-                 <div class="col-md-4 col-sm-12">
-               <div class="footer_link_heading">
-                  <h3>FEATURED COURSES</h3>
-               </div>
-               <div class="footer_menu">
-                  <ul>
-                     <li><a href="#">Starting Soon</a></li>
-                     <li><a href="#">Just Added</a></li>
-                     <li><a href="#">Most Viewed</a></li>
-                     <li><a href="#">Top Paid</a></li>
-                  </ul>
-               </div>
-            </div>
-
-            <div class="col-md-4 col-sm-12">
-               <div class="footer_link_heading">
-                  <h3>CATEGORIES</h3>
-               </div>
-               <div class="footer_menu">
-                 <ul>
-                    <li><a href="#">Arts & Design</a></li>
-                    <li><a href="#">Business</a></li>
-                    <li><a href="#">Computer</a></li>
-                    <li><a href="#">Data entery</a></li>
-                 </ul>
-               </div>
+                {% for about in about %}
+                <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100 h-100" src="{{about.image.url}}" style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="section-title position-relative mb-4">
+                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">About Us</h6>
+                        <h1 class="display-4">{{about.title}}</h1>                 
+                    </div>
+                    <p>{{about.description}}</p>
+                    {% endfor %}
+                    <div class="row pt-3 mx-0">
+                        <div class="col-3 px-0">
+                            {% for available_subject in available_subject %} 
+                            <div class="bg-success text-center p-4">
+                                <h1 class="text-white" data-toggle="counter-up">{{available_subject.subject_number}}</h1>
+                        <h6 class="text-uppercase text-white">{{available_subject.available_subject}}<span class="d-block">{{available_subject.available_subject_span}}</span></h6>
+                            </div>
+                            {% endfor %} 
+                        </div>
+                        
+                        <div class="col-3 px-0">
+                            {% for available_course in available_course %} 
+                            <div class="bg-primary text-center p-4">
+                                <h1 class="text-white" data-toggle="counter-up">{{available_course.course_number}}</h1>
+                                <h6 class="text-uppercase text-white">{{available_course.available_course}}<span class="d-block">{{available_course.available_course_span}}</span></h6>
+                            </div>
+                            {% endfor %} 
+                        </div>
+                        <div class="col-3 px-0">
+                            {% for available_instructor in available_instructor %} 
+                            <div class="bg-secondary text-center p-4">
+                                <h1 class="text-white" data-toggle="counter-up">{{available_instructor.skilled_instructors_number}}</h1>
+                                <h6 class="text-uppercase text-white">{{available_instructor.available_skilled_instructor}}<span class="d-block">{{available_instructor.available_skilled_instructor_span}}</span></h6>
+                            </div>
+                            {% endfor %} 
+                        </div>
+                        <div class="col-3 px-0">
+                            {% for happy_students in happy_students %} 
+                            <div class="bg-warning text-center p-4">
+                                <h1 class="text-white" data-toggle="counter-up">{{happy_students.number_of_happy_student}}</h1>
+                                <h6 class="text-uppercase text-white">{{happy_students.happy_student}}<span class="d-block">{{happy_students.happy_student_span}}</span></h6>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                
             </div>
             
-            <div class="col-md-4 col-sm-12">
-               <div class="footer_link_heading">
-                  <h3>USEFUL LINKS</h3>
-               </div>
-               <div class="footer_menu">
-                 <ul>
-                    <li><a href="/home">FAQs</a></li>
-                    <li><a href="/home">Success Stories</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="#">Privacy policy</a></li>
-                    <li><a href="#">Contact search</a></li>
-                    <li><a href="#">Jobs and vacancies</a></li>
-                 </ul>
-               </div>
-            </div>
-              </div>
-            </div>
-            
-         </div>
-      </div>
-   </footer>
-   <div class="cpy">
-     <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <p>Copyright {% now "Y" %}. All Rights Reserved.<a href="{% url 'home' %}"> code with flex</a></p>
-          </div>
         </div>
-     </div>
-   </div>
-   <!-- end footer -->
-      <!-- Core JavaScript
-         ================================================== -->
-      <script src="{% static 'js/jquery.min.js' %}"></script>
-      <script src="{% static 'js/tether.min.js' %}"></script>
-      <script src="{% static 'js/bootstrap.min.js' %}"></script>
-      <script src="{% static 'js/parallax.js' %}"></script>
-      <script src="{% static 'js/animate.js' %}"></script>
-      <script src="{% static 'js/ekko-lightbox.js' %}"></script>
-      <script src="{% static 'js/custom.js' %}"></script>
-   </body>
+    </div>
+    <!-- About End -->
+
+
+
+    <!-- Feature Start -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-7 mb-5 mb-lg-0">
+                    <div class="section-title position-relative mb-4">
+                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Why Choose Us?</h6>
+                        <h1 class="display-4">Why You Should Start Learning with Us?</h1>
+                    </div>
+                    <p class="mb-4 pb-2">Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo dolores et sit ipsum rebum, sadipscing et erat eirmod diam kasd labore clita est. Diam sanctus gubergren sit rebum clita amet.</p>
+                    <div class="d-flex mb-3">
+                        <div class="btn-icon bg-primary mr-4">
+                            <i class="fa fa-2x fa-graduation-cap text-white"></i>
+                        </div>
+                        <div class="mt-n1">
+                            <h4>Skilled Instructors</h4>
+                            <p>Labore rebum duo est Sit dolore eos sit tempor eos stet, vero vero clita magna kasd no nonumy et eos dolor magna ipsum.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex mb-3">
+                        <div class="btn-icon bg-secondary mr-4">
+                            <i class="fa fa-2x fa-certificate text-white"></i>
+                        </div>
+                        <div class="mt-n1">
+                            <h4>International Certificate</h4>
+                            <p>Labore rebum duo est Sit dolore eos sit tempor eos stet, vero vero clita magna kasd no nonumy et eos dolor magna ipsum.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="btn-icon bg-warning mr-4">
+                            <i class="fa fa-2x fa-book-reader text-white"></i>
+                        </div>
+                        <div class="mt-n1">
+                            <h4>Online Classes</h4>
+                            <p class="m-0">Labore rebum duo est Sit dolore eos sit tempor eos stet, vero vero clita magna kasd no nonumy et eos dolor magna ipsum.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5" style="min-height: 500px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100 h-100" src="{% static '/img/feature.jpg' %}" style="object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Feature Start -->
+    <!-- Footer Start -->
+    <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5" style="margin-top: 90px;">
+        <div class="container mt-5 pt-5">
+            <div class="row">
+                <div class="col-md-6 mb-5">
+                    <a href="{% url 'home' %}" class="navbar-brand">
+                        <h1 class="mt-n2 text-uppercase text-white"><i class="fa fa-book-reader mr-3"></i>codewithflex</h1>
+                    </a>
+                    <p class="m-0">Accusam nonumy clita sed rebum kasd eirmod elitr. Ipsum ea lorem at et diam est, tempor rebum ipsum sit ea tempor stet et consetetur dolores. Justo stet diam ipsum lorem vero clita diam</p>
+                </div>
+                <div class="col-md-6 mb-5">
+                    <h3 class="text-white mb-4">Newsletter</h3>
+                    <div class="w-100">
+                        <form action="{% url 'subscribe' %}" method="post">                     
+                            {% csrf_token %} 
+                        <div class="input-group">
+                            <input type="text" class="form-control border-light" style="padding: 30px;" placeholder="Your Email Address">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary px-4">Sign Up</button>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-5">
+                    <h3 class="text-white mb-4">Get In Touch</h3>
+                    <p><i class="fa fa-map-marker-alt mr-2"></i>123 Street, New York, USA</p>
+                    <p><i class="fa fa-phone-alt mr-2"></i>+012 345 67890</p>
+                    <p><i class="fa fa-envelope mr-2"></i>info@example.com</p>
+                    <div class="d-flex justify-content-start mt-4">
+                        <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-twitter"></i></a>
+                        <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-facebook-f"></i></a>
+                        <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-linkedin-in"></i></a>
+                        <a class="text-white" href="#"><i class="fab fa-2x fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <h3 class="text-white mb-4">Our Courses</h3>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Web Design</a>
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Apps Design</a>
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Marketing</a>
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Research</a>
+                        <a class="text-white-50" href="#"><i class="fa fa-angle-right mr-2"></i>SEO</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <h3 class="text-white mb-4">Quick Links</h3>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Privacy Policy</a>
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Terms & Condition</a>
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Regular FAQs</a>
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Help & Support</a>
+                        <a class="text-white-50" href="#"><i class="fa fa-angle-right mr-2"></i>Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark text-white-50 border-top py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
+                    <p class="m-0">Copyright &copy;{% now "Y" %}. <a class="text-white" href="{% url 'home' %}"> code with flex</a>. All Rights Reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary rounded-0 btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <!-- Template Javascript -->
+    <script src="{% static '/js/main.js' %}"></script>
+</body>
+
 </html>

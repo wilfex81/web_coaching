@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'application.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'web_coaching', 
+        'NAME': 'software_classes', 
         'USER': 'postgres',
         'PASSWORD': 'root',
         'HOST': '127.0.0.1',
