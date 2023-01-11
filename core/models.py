@@ -88,6 +88,16 @@ class OnlineClasse(models.Model):
 
     def __str__(self):
         return self.heading
+    
+class Course(models.Model):
+    title = models.CharField(max_length= 150, blank=False)
+    name = models.CharField(max_length=100, blank= False)
+    image = models.ImageField(upload_to= 'course_images')
+    rating = models.FloatField()
+    count = models.IntegerField()
+
+    def __str__(self):
+        return self.title
 
 class SubscribedUser(models.Model):
     name = models.CharField(max_length=150)
@@ -96,6 +106,8 @@ class SubscribedUser(models.Model):
 
     def __str__(self):
         return self.email
+
+
 
 
 
