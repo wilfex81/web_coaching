@@ -10,7 +10,7 @@ from .models import (Testimonie, SubscribedUser,
                     AvailableCourse, AvailableInstructor, 
                     AvailableSubject, HappyStudents,
                     Feature, Instructor, Certficate, 
-                    OnlineClasse, Course
+                    OnlineClasse, Course, Team
                     )
 
 from .forms import NewsLetterForm, ClientForm
@@ -29,6 +29,7 @@ def home(request):
     testimonies = Testimonie.objects.all()
     testimonial_intro = TestimonieIntro.objects.all()
     course_detail= Course.objects.all()
+    team = Team.objects.all()
     context = {
         'about':about,
         'available_subject':available_subject,
@@ -41,7 +42,8 @@ def home(request):
         'classes': classes,
         'testimonies': testimonies,
         'testimonial_intro': testimonial_intro,
-        'course_detail' : course_detail
+        'course_detail' : course_detail,
+        'team': team
     }
     return render(request, 'index.html', context)
 
@@ -95,8 +97,12 @@ def features(request):
     return render(request, 'feature.html', context)
 
 def team(request):
-    '''Login page'''
-    return render(request, 'team.html')
+    '''Team page'''
+    team = Team.objects.all()
+    context = {
+        'team': team
+    }
+    return render(request, 'team.html', context)
 
 def testimonial(request):
     testimonies = Testimonie.objects.all()

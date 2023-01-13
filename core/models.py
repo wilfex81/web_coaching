@@ -99,6 +99,19 @@ class Course(models.Model):
     def __str__(self):
         return self.title
 
+class Team(models.Model):
+    name = models.CharField(max_length= 100, blank=False)
+    course = models.CharField(max_length=150, blank=False)
+    image = models.ImageField(upload_to='team')
+    twiter = models.URLField()
+    facebook = models.URLField()
+    linkedin = models.URLField()
+    instagram = models.URLField()
+    facebook = models.URLField()
+
+    def __str__(self):
+        return self.name
+
 class SubscribedUser(models.Model):
     name = models.CharField(max_length=150)
     email = models.EmailField(unique=True, max_length=200)

@@ -4,7 +4,7 @@ from .models import (Testimonie, SubscribedUser,
                     AvailableCourse, AvailableInstructor, 
                     AvailableSubject, HappyStudents,
                     Feature, Instructor, Certficate, 
-                    OnlineClasse, Course
+                    OnlineClasse, Course, Team
                     )
 #Table to display messages sent by users
 class ClientsMessagesAdmin(admin.ModelAdmin):
@@ -30,6 +30,7 @@ admin.site.register(Instructor)
 admin.site.register(Certficate)
 admin.site.register(OnlineClasse)
 admin.site.register(Course)
+admin.site.register(Team)
 
 # admin.site.register(ContactsSaved, ClientsMessagesAdmin )
 
